@@ -1,0 +1,82 @@
+﻿@model HEManagement.Models.SurveyItemExisting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SurveyItemExisting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CeilingHeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CeilingHeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HardwireOrPlugLoad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HardwireOrPlugLoad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InteriorOrExterior)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InteriorOrExterior)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExistingFixtureType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExistingFixtureType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FixtureBaseType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FixtureBaseType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostInstallQuantityRecommended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostInstallQuantityRecommended)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SurveyItemExistingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

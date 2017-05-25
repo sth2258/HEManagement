@@ -29,6 +29,24 @@
         <th>
             @Html.DisplayNameFor(model => model.Zip)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UtilityAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DecisionMakerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DecisionMakerPosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SiteContactPosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessType)
+        </th>
         <th></th>
     </tr>
 
@@ -51,6 +69,24 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UtilityAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DecisionMakerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DecisionMakerPosition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SiteContactPosition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |

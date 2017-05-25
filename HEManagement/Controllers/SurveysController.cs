@@ -10,108 +10,108 @@ using HEManagement.Models;
 
 namespace HEManagement.Controllers
 {
-    public class CustomersController : Controller
+    public class SurveysController : Controller
     {
-        private CustomerDBContext db = new CustomerDBContext();
+        private SurveyDBContext db = new SurveyDBContext();
 
-        // GET: Customers
+        // GET: Surveys
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(db.SurveyItemExisting.ToList());
         }
 
-        // GET: Customers/Details/5
+        // GET: Surveys/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Survey survey = db.SurveyItemExisting.Find(id);
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(survey);
         }
 
-        // GET: Customers/Create
+        // GET: Surveys/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Surveys/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,CustomerName,Address1,Address2,City,State,Zip,UtilityAccountNumber,DecisionMakerName,DecisionMakerPosition,SiteContactName,SiteContactPosition,BusinessType")] Customer customer)
+        public ActionResult Create([Bind(Include = "SurveyID,SurveyDateTime,CustomerID,CeilingHeight")] Survey survey)
         {
             if (ModelState.IsValid)
             {
-                customer.CustomerID = Guid.NewGuid();
-                db.Customers.Add(customer);
+                survey.SurveyID = Guid.NewGuid();
+                db.SurveyItemExisting.Add(survey);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            return View(survey);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Surveys/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Survey survey = db.SurveyItemExisting.Find(id);
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(survey);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Surveys/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerID,CustomerName,Address1,Address2,City,State,Zip,UtilityAccountNumber,DecisionMakerName,DecisionMakerPosition,SiteContactName,SiteContactPosition,BusinessType")] Customer customer)
+        public ActionResult Edit([Bind(Include = "SurveyID,SurveyDateTime,CustomerID,CeilingHeight")] Survey survey)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(survey).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(survey);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Surveys/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Survey survey = db.SurveyItemExisting.Find(id);
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(survey);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Surveys/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            Survey survey = db.SurveyItemExisting.Find(id);
+            db.SurveyItemExisting.Remove(survey);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
