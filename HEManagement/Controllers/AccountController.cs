@@ -368,7 +368,16 @@ namespace HEManagement.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
+                IdentityResult result = null;
+                if (!info.Email.Contains("@haberelectric.com"))
+                {
+                    result = IdentityResult.Failed("User is not in permitted list. Only HaberElectric.com users are allowed to access this service.");
+                }
+                else
+                {
+                    result = await UserManager.CreateAsync(user);
+                }
+
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);

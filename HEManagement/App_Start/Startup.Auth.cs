@@ -58,11 +58,12 @@ namespace HEManagement
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1023309207882-b0qj4lu57i98topagipu08kojs02l8vu.apps.googleusercontent.com",
+                ClientSecret = "8_QbfURKUYE0xYZEG0xWgRU-",
+                Scope = { "email" }
+            });
         }
     }
 }
