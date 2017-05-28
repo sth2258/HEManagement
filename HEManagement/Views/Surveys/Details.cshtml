@@ -1,13 +1,13 @@
 ﻿@model HEManagement.Models.Survey
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Survey Details";
 }
 
-<h2>Details</h2>
+<h2>Survey Details</h2>
 
 <div>
-    <h4>Survey</h4>
+    <h4>Site Information</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CustomerID)
+            @ViewBag.CustomerName
         </dd>
 
         <dt>
@@ -40,3 +40,10 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.SurveyID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@if (true)
+{
+    HEManagement.Models.SurveyItemExistingDBContext tmp = new HEManagement.Models.SurveyItemExistingDBContext();
+    var a = tmp.SurveyItemExisting.Where(b => b.SurveyID == Model.SurveyID);
+    Html.RenderPartial("~/Views/SurveyItemExistings/SurveyItems.cshtml", a);
+}
+@Html.ActionLink("Add Item", "Create", new RouteValueDictionary(new { controller = "SurveyItemExistings", action = "Create", SurveyID = Model.SurveyID }))

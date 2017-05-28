@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HEManagement.Models.SurveyItemExisting>
+
+@{
+    Layout = null;
+}
+
+<h3>Survey Items</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CeilingHeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HardwireOrPlugLoad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InteriorOrExterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExistingFixtureType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FixtureBaseType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostInstallQuantityRecommended)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CeilingHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HardwireOrPlugLoad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteriorOrExterior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExistingFixtureType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FixtureBaseType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostInstallQuantityRecommended)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new RouteValueDictionary(new { controller = "SurveyItemExistings", action = "Edit", ID = item.SurveyItemExistingID })) | 
+                @Html.ActionLink("Details", "Details", new RouteValueDictionary(new { controller = "SurveyItemExistings", action = "Details", ID = item.SurveyItemExistingID })) | 
+                @Html.ActionLink("Delete", "Delete", new RouteValueDictionary(new { controller = "SurveyItemExistings", action = "Delete", ID = item.SurveyItemExistingID })) | 
+
+
+            </td>
+        </tr>
+    }
+
+</table>

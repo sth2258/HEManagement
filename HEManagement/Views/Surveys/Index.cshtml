@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<HEManagement.Models.Survey>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Survey List ";
 }
 
-<h2>Index</h2>
+<h2>Survey List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CeilingHeight)
         </th>
+        <th>
+            Survey Items
+        </th>
         <th></th>
     </tr>
 
@@ -29,10 +32,14 @@
             @Html.DisplayFor(modelItem => item.SurveyDateTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
+            @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+            @*@Html.DropDownListFor(M => M.MobileList, new SelectList(Model.MobileList, "Value", "Text"))*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CeilingHeight)
+        </td>
+        <td>
+            @Html.Raw((new HEManagement.Models.SurveyItemExistingDBContext()).SurveyItemExisting.Where(m => m.SurveyID == item.SurveyID).Count().ToString())
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SurveyID }) |

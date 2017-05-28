@@ -5,15 +5,14 @@ namespace HEManagement.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HEManagement.Models.SurveyDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HEManagement.Models.SurveyItemExistingDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "HEManagement.Models.SurveyDBContext";
         }
 
-        protected override void Seed(HEManagement.Models.SurveyDBContext context)
+        protected override void Seed(HEManagement.Models.SurveyItemExistingDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

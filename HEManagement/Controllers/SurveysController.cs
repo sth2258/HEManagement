@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HEManagement.Models;
+using System.Web.Routing;
 
 namespace HEManagement.Controllers
 {
@@ -17,7 +18,8 @@ namespace HEManagement.Controllers
         // GET: Surveys
         public ActionResult Index()
         {
-            return View(db.SurveyItemExisting.ToList());
+            
+            return View(db.Survey.ToList());
         }
 
         // GET: Surveys/Details/5
@@ -27,17 +29,33 @@ namespace HEManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Survey survey = db.SurveyItemExisting.Find(id);
+            Survey survey = db.Survey.Find(id);
             if (survey == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.SurveyID = id;
+            ViewBag.CustomerName = (new CustomerDBContext()).Customers.Single(m => m.CustomerID == survey.CustomerID).CustomerName;
             return View(survey);
         }
 
         // GET: Surveys/Create
         public ActionResult Create()
         {
+            List<SelectListItem> tmp = new List<SelectListItem>();
+            CustomerDBContext context = new CustomerDBContext();
+            int cnt = 0;
+            foreach(Customer a in context.Customers)
+            {
+                tmp.Add(new SelectListItem { Text = a.CustomerName, Value = a.CustomerID.ToString() });
+                cnt++;
+            }
+
+            if(cnt== 0)
+            {
+                tmp.Add(new SelectListItem { Text = "No Customers Found", Value = "N/a" });
+            }
+            ViewBag.Items = tmp;
             return View();
         }
 
@@ -51,9 +69,10 @@ namespace HEManagement.Controllers
             if (ModelState.IsValid)
             {
                 survey.SurveyID = Guid.NewGuid();
-                db.SurveyItemExisting.Add(survey);
+                db.Survey.Add(survey);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", new RouteValueDictionary(
+    new { controller = "SurveyItemExistings", action = "Create", SurveyID = survey.SurveyID }));
             }
 
             return View(survey);
@@ -66,11 +85,27 @@ namespace HEManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Survey survey = db.SurveyItemExisting.Find(id);
+            Survey survey = db.Survey.Find(id);
             if (survey == null)
             {
                 return HttpNotFound();
             }
+            List<SelectListItem> tmp = new List<SelectListItem>();
+            CustomerDBContext context = new CustomerDBContext();
+            int cnt = 0;
+            foreach (Customer a in context.Customers)
+            {
+                if (a.CustomerID == survey.CustomerID)
+                {
+                    tmp.Add(new SelectListItem { Text = a.CustomerName, Value = a.CustomerID.ToString(), Selected = true });
+
+                }
+                else {
+                    tmp.Add(new SelectListItem { Text = a.CustomerName, Value = a.CustomerID.ToString() });
+                }
+                cnt++;
+            }
+            ViewBag.Items = tmp;
             return View(survey);
         }
 
@@ -87,6 +122,23 @@ namespace HEManagement.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            List<SelectListItem> tmp = new List<SelectListItem>();
+            CustomerDBContext context = new CustomerDBContext();
+            int cnt = 0;
+            foreach (Customer a in context.Customers)
+            {
+                if (a.CustomerID == survey.CustomerID)
+                {
+                    tmp.Add(new SelectListItem { Text = a.CustomerName, Value = a.CustomerID.ToString(), Selected = true });
+
+                }
+                else
+                {
+                    tmp.Add(new SelectListItem { Text = a.CustomerName, Value = a.CustomerID.ToString() });
+                }
+                cnt++;
+            }
+            ViewBag.Items = tmp;
             return View(survey);
         }
 
@@ -97,7 +149,7 @@ namespace HEManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Survey survey = db.SurveyItemExisting.Find(id);
+            Survey survey = db.Survey.Find(id);
             if (survey == null)
             {
                 return HttpNotFound();
@@ -110,8 +162,8 @@ namespace HEManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Survey survey = db.SurveyItemExisting.Find(id);
-            db.SurveyItemExisting.Remove(survey);
+            Survey survey = db.Survey.Find(id);
+            db.Survey.Remove(survey);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

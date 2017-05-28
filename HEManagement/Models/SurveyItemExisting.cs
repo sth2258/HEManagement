@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace HEManagement.Models
         public Guid SurveyItemExistingID { get; set; }
 
         public string ItemLocation { get; set; }
-        public uint CeilingHeight { get; set; }
+        public int CeilingHeight { get; set; }
 
         [Display(Name = "Hardwired or Plug-Load")]
         public HardwireOrPlugLoad HardwireOrPlugLoad { get; set; }
@@ -30,6 +31,8 @@ namespace HEManagement.Models
         [Display(Name = "Post Install Quantity Recommended")]
         public int PostInstallQuantityRecommended { get; set; }
 
+        public Guid SurveyID { get; set; }
+        [ForeignKey("SurveyID")]
         public virtual Survey Survey { get; set; }
 
 
