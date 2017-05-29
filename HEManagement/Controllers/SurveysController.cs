@@ -114,7 +114,7 @@ namespace HEManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SurveyID,SurveyDateTime,CustomerID,CeilingHeight")] Survey survey)
+        public ActionResult Edit([Bind(Include = "SurveyID,SurveyDateTime,CustomerID,CeilingHeight")] Survey survey, IEnumerable<HttpPostedFile> files)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +125,16 @@ namespace HEManagement.Controllers
             List<SelectListItem> tmp = new List<SelectListItem>();
             CustomerDBContext context = new CustomerDBContext();
             int cnt = 0;
+
+            foreach (var file in files)
+            {
+                if (file.ContentLength > 0)
+                {
+                    //var fileName = Path.GetFileName(file.FileName);
+                    //var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                    //file.SaveAs(path);
+                }
+            }
             foreach (Customer a in context.Customers)
             {
                 if (a.CustomerID == survey.CustomerID)

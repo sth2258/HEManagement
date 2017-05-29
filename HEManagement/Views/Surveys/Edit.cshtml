@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Survey</h4>
         <hr />
@@ -41,6 +41,16 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2" for="file1">Picture Upload</label>
+            <div class="col-md-10">
+                <input class="form-control" type="file" name="files" id="file1" />
+            </div>
+        </div>
+        <div id="appender"></div>
+
+        <a href="#" id="btnAddPics">Add More Pictures</a>
+       
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -54,4 +64,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+                $(document).ready(function () {
+                    var cnt = 2;
+                    $('#btnAddPics').click(function () {
+                        $('#appender').append('<div class="form-group"><label class="control-label col-md-2" for="file1">Picture Upload</label><div class="col-md-10"><input class="form-control" type="file" name="files" id="file1" /></div></div>');
+                    })
+
+                });
+    </script>
 }

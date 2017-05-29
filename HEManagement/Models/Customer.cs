@@ -29,6 +29,7 @@ namespace HEManagement.Models
         [Display(Name = "Site Contact Position")]
         public string SiteContactPosition { get; set; }
 
+        [Display(Name ="Business Type")]
         public BusinessType BusinessType { get; set;  }
 
     }

@@ -12,7 +12,10 @@ namespace HEManagement.Models
     {
         public Guid SurveyItemExistingID { get; set; }
 
+        [Display(Name ="Room / Location")]
         public string ItemLocation { get; set; }
+
+        [Display(Name ="Ceiling Height"), Range(1,10000)]
         public int CeilingHeight { get; set; }
 
         [Display(Name = "Hardwired or Plug-Load")]
@@ -28,7 +31,7 @@ namespace HEManagement.Models
 
         [Display(Name = "Fixture Base Type")]
         public FistureBaseType FixtureBaseType { get; set; }
-        [Display(Name = "Post Install Quantity Recommended")]
+        [Display(Name = "Post Install Quantity Recommended"), Range(1,10000)]
         public int PostInstallQuantityRecommended { get; set; }
 
         public Guid SurveyID { get; set; }

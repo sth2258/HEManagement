@@ -23,7 +23,7 @@ namespace HEManagement.Models
         public Guid CustomerID { get; set; }
         [ForeignKey("CustomerID")]
         public virtual Customer Customer { get; set; }
-
+        [Display(Name ="Ceiling Height"), Range(1,10000)]
         public int CeilingHeight { get; set; }
 
     }
